@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int numCases = scanner.nextInt();
+        scanner.nextLine(); // Считываем перевод строки после числа тестовых случаев
+
+        for (int i = 0; i < numCases; i++) {
+            int numLines = scanner.nextInt();
+            scanner.nextLine(); // Считываем перевод строки после числа строк
+
+            int hash = 0;
+            for (int j = 0; j < numLines; j++) {
+                String line = scanner.nextLine();
+                hash += calculateHash(line, j);
+            }
+
+            System.out.println(hash);
+        }
+
+        scanner.close();
+    }
+
+    private static int calculateHash(String line, int lineNumber) {
+        int hash = 0;
+        for (int i = 0; i < line.length(); i++) {
+            char c = line.charAt(i);
+            int alphabetPosition = c - 'A';
+            hash += alphabetPosition + lineNumber + i;
+        }
+        return hash;
+    }
+}

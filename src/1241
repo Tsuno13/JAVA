@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int numCases = scanner.nextInt();
+        scanner.nextLine(); // Считываем перевод строки после числа тестовых случаев
+
+        for (int i = 0; i < numCases; i++) {
+            String A = scanner.next();
+            String B = scanner.next();
+
+            if (fits(A, B)) {
+                System.out.println("encaixa");
+            } else {
+                System.out.println("nao encaixa");
+            }
+        }
+
+        scanner.close();
+    }
+
+    private static boolean fits(String A, String B) {
+        // Проверяем, соответствует ли B последним цифрам A
+        if (A.length() < B.length()) {
+            return false;
+        }
+        int indexA = A.length() - 1;
+        int indexB = B.length() - 1;
+        while (indexB >= 0) {
+            if (A.charAt(indexA) != B.charAt(indexB)) {
+                return false;
+            }
+            indexA--;
+            indexB--;
+        }
+        return true;
+    }
+}

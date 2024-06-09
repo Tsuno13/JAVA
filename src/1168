@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Читаем количество тестовых случаев
+        int numCases = scanner.nextInt();
+        scanner.nextLine(); // Считываем конец строки после числа
+
+        // Обрабатываем каждый тестовый случай
+        for (int i = 0; i < numCases; i++) {
+            // Считываем число из каждого тестового случая
+            String number = scanner.nextLine();
+            int totalLEDs = calculateLEDs(number);
+
+            // Выводим результат для текущего тестового случая
+            System.out.println(totalLEDs + " leds");
+        }
+
+        scanner.close();
+    }
+
+    // Метод для расчета количества LED
+    private static int calculateLEDs(String number) {
+        // Количество LED для каждой цифры (0-9)
+        int[] ledsPerDigit = {6, 2, 5, 5, 4, 5, 6, 3, 7, 6};
+
+        int totalLEDs = 0;
+        // Проходим по каждой цифре числа и добавляем количество LED для этой цифры
+        for (int i = 0; i < number.length(); i++) {
+            int digit = Character.getNumericValue(number.charAt(i));
+            totalLEDs += ledsPerDigit[digit];
+        }
+        return totalLEDs;
+    }
+}

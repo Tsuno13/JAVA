@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int numCases = scanner.nextInt();
+        scanner.nextLine(); // Считываем перевод строки после числа тестовых случаев
+
+        for (int i = 0; i < numCases; i++) {
+            String line = scanner.nextLine();
+            String originalLine = unscrambleLine(line);
+            System.out.println(originalLine);
+        }
+
+        scanner.close();
+    }
+
+    private static String unscrambleLine(String line) {
+        int length = line.length();
+        StringBuilder originalLine = new StringBuilder();
+        for (int i = length / 2 - 1; i >= 0; i--) {
+            originalLine.append(line.charAt(i)); // Добавляем символы слева от зеркальной оси
+        }
+        for (int i = length - 1; i >= length / 2; i--) {
+            originalLine.append(line.charAt(i)); // Добавляем символы справа от зеркальной оси
+        }
+        return originalLine.toString();
+    }
+}

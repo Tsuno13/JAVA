@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int time = scanner.nextInt();
+        int speed = scanner.nextInt();
+
+        int distance = time * speed;
+        double fuelNeeded = distance / 12.0;
+
+        System.out.printf("%.3f%n", fuelNeeded);
+    }
+}

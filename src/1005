@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double A = scanner.nextDouble();
+        double B = scanner.nextDouble();
+
+        double weightA = 3.5;
+        double weightB = 7.5;
+        double MEDIA = (A * weightA + B * weightB) / (weightA + weightB);
+
+        System.out.printf("MEDIA = %.5f%n", MEDIA);
+    }
+}

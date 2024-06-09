@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Чтение кода продукта и его количества
+        int productCode = scanner.nextInt();
+        int quantity = scanner.nextInt();
+
+        // Определение стоимости товара в зависимости от его кода
+        double totalPrice;
+        switch (productCode) {
+            case 1:
+                totalPrice = quantity * 4.00;
+                break;
+            case 2:
+                totalPrice = quantity * 4.50;
+                break;
+            case 3:
+                totalPrice = quantity * 5.00;
+                break;
+            case 4:
+                totalPrice = quantity * 2.00;
+                break;
+            case 5:
+                totalPrice = quantity * 1.50;
+                break;
+            default:
+                totalPrice = 0;
+                break;
+        }
+
+        // Вывод общей стоимости с двумя знаками после десятичной точки
+        System.out.printf("Total: R$ %.2f%n", totalPrice);
+
+        scanner.close();
+    }
+}

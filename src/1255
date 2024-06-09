@@ -1,0 +1,42 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int numCases = scanner.nextInt();
+        scanner.nextLine(); // Считываем перевод строки после числа тестовых случаев
+
+        for (int i = 0; i < numCases; i++) {
+            String text = scanner.nextLine();
+            String mostFrequentLetters = findMostFrequentLetters(text);
+            System.out.println(mostFrequentLetters);
+        }
+
+        scanner.close();
+    }
+
+    private static String findMostFrequentLetters(String text) {
+        // Приводим текст к нижнему регистру и удаляем все символы, кроме букв
+        text = text.toLowerCase().replaceAll("[^a-z]", "");
+
+        // Считаем частоту появления каждой буквы
+        Map<Character, Integer> frequencyMap = new HashMap<>();
+        for (char c : text.toCharArray()) {
+            frequencyMap.put(c, frequencyMap.getOrDefault(c, 0) + 1);
+        }
+
+        // Находим максимальную частоту
+        int maxFrequency = Collections.max(frequencyMap.values());
+
+        // Собираем все буквы с максимальной частотой в алфавитном порядке
+        StringBuilder result = new StringBuilder();
+        for (char c = 'a'; c <= 'z'; c++) {
+            if (frequencyMap.containsKey(c) && frequencyMap.get(c) == maxFrequency) {
+                result.append(c);
+            }
+        }
+
+        return result.toString();
+    }
+}

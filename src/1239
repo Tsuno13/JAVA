@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (scanner.hasNextLine()) {
+            String text = scanner.nextLine();
+            String htmlText = convertToHTML(text);
+            System.out.println(htmlText);
+        }
+
+        scanner.close();
+    }
+
+    private static String convertToHTML(String text) {
+        StringBuilder htmlText = new StringBuilder();
+        boolean italic = false;
+        boolean bold = false;
+
+        for (char c : text.toCharArray()) {
+            if (c == '_') {
+                if (italic) {
+                    htmlText.append("</i>");
+                    italic = false;
+                } else {
+                    htmlText.append("<i>");
+                    italic = true;
+                }
+            } else if (c == '*') {
+                if (bold) {
+                    htmlText.append("</b>");
+                    bold = false;
+                } else {
+                    htmlText.append("<b>");
+                    bold = true;
+                }
+            } else {
+                htmlText.append(c);
+            }
+        }
+
+        // Закрываем теги, если они остались открытыми в конце строки
+        if (italic) {
+            htmlText.append("</i>");
+        }
+        if (bold) {
+            htmlText.append("</b>");
+        }
+
+        return htmlText.toString();
+    }
+}
